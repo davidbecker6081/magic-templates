@@ -1,0 +1,23 @@
+{
+  "name": "magic-templates",
+  "version": "1.0.0",
+  "description": "Node-powered templates for React.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidbecker6081/magic-templates.git"
+  },
+  "keywords": [],
+  "author": "David Becker <david@beckersite.com> (https://david-a-becker.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidbecker6081/magic-templates/issues"
+  },
+  "homepage": "https://github.com/davidbecker6081/magic-templates#readme",
+  "dependencies": {
+    "inquirer": "^7.0.3"
+  }
+}
