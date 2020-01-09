@@ -9,30 +9,32 @@ const inquirer = require('inquirer')
 //     console.log(`Hi ${name}`)
 //     readline.close()
 // })
-let componentChoice = null;
+
 const questions = [{
     type: 'list',
     name: 'componentType',
     choices: ['Functional', 'Class/Stateful'],
     message: 'Which type of component would you like to create?'
+}, {
+    type: 'input',
+    name: 'fileDestination',
+    message: 'Where would you like the component created? Please provide relative path (include filename): '
 }]
 
 inquirer.prompt(questions).then(answers => {
-    let choiceA = answers['componentType']
+    let componentChoice = answers['componentType']
+    let path = answers['fileDestination']
     // console.log(`Good Choice: ${choiceA}`)
-    componentChoice = choiceA
 
     switch (componentChoice) {
         case 'Functional':
-            console.log('functional choice is cool')
-            fs.copyFile('src/templates/functionalReactComponent.js', 'src/myFunctionalComponent.js', (err) => {
+            fs.copyFile('src/templates/functionalReactComponent.js', path, (err) => {
                 if (err) { console.log(err) }
                 console.log('functional component created')
             })
             return 'functional'
         case 'Class/Stateful':
-            console.log('class/stateful choice is cool')
-            fs.copyFile('src/templates/classReactComponent.js', 'src/myClassComponent.js', (err) => {
+            fs.copyFile('src/templates/classReactComponent.js', path, (err) => {
                 if (err) { console.log(err) }
                 console.log('class/stateful component created')
             })
