@@ -24,7 +24,6 @@ const questions = [{
 inquirer.prompt(questions).then(answers => {
     let componentChoice = answers['componentType']
     let path = answers['fileDestination']
-    // console.log(`Good Choice: ${choiceA}`)
 
     switch (componentChoice) {
         case 'Functional':
