@@ -1,25 +1,7 @@
 const fs = require('fs')
 const inquirer = require('inquirer')
-// const readline = require('readline').createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// })
-
-// const name = readline.question('Whats your name? ', (name) => {
-//     console.log(`Hi ${name}`)
-//     readline.close()
-// })
-
-const questions = [{
-    type: 'list',
-    name: 'componentType',
-    choices: ['Functional', 'Class/Stateful'],
-    message: 'Which type of component would you like to create?'
-}, {
-    type: 'input',
-    name: 'fileDestination',
-    message: 'Where would you like the component created? Please provide relative path (include filename): '
-}]
+const questions = require('./questions/questionsMap.js')
+const FileInstance = require('./DTO/fileInstance.js')
 
 inquirer.prompt(questions).then(answers => {
     let componentChoice = answers['componentType']
@@ -30,6 +12,8 @@ inquirer.prompt(questions).then(answers => {
             fs.copyFile('src/templates/functionalReactComponent.js', path, (err) => {
                 if (err) { console.log(err) }
                 console.log('functional component created')
+                const instance = new FileInstance('file1')
+                console.log(instance)
             })
             return 'functional'
         case 'Class/Stateful':
