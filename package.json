@@ -4,6 +4,7 @@
   "description": "Node-powered templates for React.js",
   "main": "index.js",
   "scripts": {
+    "scaffold": "node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
