@@ -8,6 +8,7 @@ module.exports = {
         type: 'checkbox',
         name: 'lifecycleMethods',
         choices: [
+            'componentDidMount',
             'getDerivedStateFromProps', 
             'shouldComponentUpdate', 
             'getSnapshotBeforeUpdate', 
@@ -16,7 +17,7 @@ module.exports = {
             'getDerivedStateFromError',
             'componentDidCatch'
         ],
-        when: (answers) => answers.componentType === 'Functional'
+        when: (answers) => answers.componentType === 'Class/Stateful'
     }, {
         type: 'input',
         name: 'fileDestination',

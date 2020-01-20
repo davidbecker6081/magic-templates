@@ -3,6 +3,8 @@ const inquirer = require('inquirer')
 const questions = require('./questions/questionsMap.js')
 const FileInstance = require('./DTO/fileInstance.js')
 const writeArrayToFile = require('./utils/writeArrayToFile.js')
+const classReactComponent = require('./templates/classReactComponentArray.js')
+const lifecycleMethodsArray = require('./templates/lifecycleMethods/lifecycleMethods.js')
 
 inquirer.prompt(questions.component).then(answers => {
     let componentChoice = answers['componentType']
@@ -10,7 +12,6 @@ inquirer.prompt(questions.component).then(answers => {
     
     switch (componentChoice) {
         case 'Functional':
-            const methodsToCopy = answers['lifecycleMethods']
 
             console.log(methodsToCopy)
             fs.copyFile('src/templates/functionalReactComponent.js', path, (err) => {
@@ -18,14 +19,21 @@ inquirer.prompt(questions.component).then(answers => {
             })
             return 'functional'
         case 'Class/Stateful':
-            fs.copyFile('src/templates/classReactComponent.js', path, (err) => {
-                if (err) { console.log(err) }
-                console.log('class/stateful component created')
-            })
+            const methodsToCopy = answers['lifecycleMethods']
+            const indexToInsertMethods = classReactComponent.indexOf("render() {")
+            const mappedMethods = methodsToCopy.map(method => lifecycleMethodsArray[method])
+            const arrToWrite = [
+                ...classReactComponent.slice(0, indexToInsertMethods - 1),
+                ...mappedMethods,
+                ...classReactComponent.slice(indexToInsertMethods, classReactComponent.length - 1)
+            ]
+            writeArrayToFile({ path, arr: arrToWrite })
             return 'class/stateful'
         default: 
             return 'Choice invalid'
     }
 })
 
+
+[['1', '2', '3']]
 
